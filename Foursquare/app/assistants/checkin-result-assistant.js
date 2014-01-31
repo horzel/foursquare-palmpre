@@ -385,7 +385,10 @@ CheckinResultAssistant.prototype.okTappedCheckin = function() {
 CheckinResultAssistant.prototype.tipDone = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/markdone',
-			parameters: {},
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v: 20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -410,7 +413,10 @@ CheckinResultAssistant.prototype.tipDone = function() {
 CheckinResultAssistant.prototype.tipRemove = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/unmark',
-			parameters: {},
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v: 20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -436,7 +442,10 @@ CheckinResultAssistant.prototype.tipRemove = function() {
 CheckinResultAssistant.prototype.tipAdd = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/marktodo',
-			parameters: {},
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v: 20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){

@@ -219,7 +219,10 @@ VenuedetailAssistant.prototype.setup = function() {
 		logthis("at "+this.venue.location.lat+", "+this.venue.location.lng);
 		this.controller.serviceRequest('palm://com.palm.location', {
 				method: "getReverseLocation",
-				parameters: {latitude: this.venue.location.lat, longitude:this.venue.location.lng},
+				// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+				//parameters: {latitude: this.venue.location.lat, longitude:this.venue.location.lng},
+				parameters: {latitude: this.venue.location.lat, longitude:this.venue.location.lng, v:20140131},
+				// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
 				onSuccess: function(address){
 					logthis("got approx addy");
 					//logthis("addy="+Object.toJSON(address));
@@ -460,7 +463,10 @@ VenuedetailAssistant.prototype.getVenueInfo = function() {
 //	 Mojo.Log.error('/venues/'+this.venue.id+',/venues/'+this.venue.id+'/tips,/venues/'+this.venue.id+'/photos?group=venue,/venues/'+this.venue.id+'/photos?group=checkin,/venues/'+this.venue.id+'/herenow?limit=250');
 	 foursquareGetMulti(this, {
 	 	endpoints: '/venues/'+this.venue.id+',/venues/'+this.venue.id+'/tips,/venues/'+this.venue.id+'/photos?group=venue,/venues/'+this.venue.id+'/photos?group=checkin,/venues/'+this.venue.id+'/herenow?limit=250',
-	 	requiresAuth: true,
+	 	// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		parameters: {v:20140131},
+		// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		requiresAuth: true,
 	 	debug: true,
 	 	ignoreErrors: false,
 	    onSuccess: this.getVenueInfoSuccess.bind(this),
@@ -1779,6 +1785,9 @@ VenuedetailAssistant.prototype.checkIn = function(id, n, s, sf, t, fb) {
 				shout: s,
 				private: sf,
 				twitter: t,
+				// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+				v: 20140131,
+				// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
 				facebook: fb
 			},
 			onSuccess: this.checkInSuccess.bind(this),
@@ -1807,7 +1816,10 @@ VenuedetailAssistant.prototype.markClosed = function() {
 		foursquarePost(this, {
 			endpoint: 'venues/'+this.venue.id+'/flag',
 			requiresAuth: true,
-			parameters: {problem:'closed'},
+			// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+			//parameters: {problem:'closed'},
+			parameters: {problem:'closed', v:20140131},
+			// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
 			debug:true,
 			onSuccess: this.markClosedSuccess.bind(this),
 			onFailure: this.markClosedFailed.bind(this)
@@ -1837,7 +1849,10 @@ VenuedetailAssistant.prototype.markMislocated = function() {
 			endpoint: 'venues/'+this.venue.id+'/flag',
 			requiresAuth: true,
 			debug:true,
-			parameters: {problem:'mislocated'},
+			// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+			//parameters: {problem:'mislocated'},
+			parameters: {problem:'mislocated', v:20140131},
+			// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
 			onSuccess: this.markMislocatedSuccess.bind(this),
 			onFailure: this.markMislocatedFailed.bind(this)
 			
@@ -1865,7 +1880,10 @@ VenuedetailAssistant.prototype.markDuplicate = function() {
 			endpoint: 'venues/'+this.venue.id+'/flag',
 			requiresAuth: true,
 			debug:true,
-			parameters: {problem:'duplicate'},
+			// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+			//parameters: {problem:'duplicate'},
+			parameters: {problem:'duplicate', v:20140131},
+			// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
 			onSuccess: this.markDuplicateSuccess.bind(this),
 			onFailure: this.markDuplicateFailed.bind(this)
 			

@@ -305,6 +305,9 @@ CheckinAssistant.prototype.checkIn = function(id, n, s, sf, t, fb,hasphoto) {
 				ll: _globals.lat+","+_globals.long,
 				llAcc: _globals.hacc,
 				alt: _globals.altitude,
+				// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+				v: 20140131,
+				// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 				altAcc: _globals.vacc
 			};
 			
@@ -415,6 +418,9 @@ CheckinAssistant.prototype.checkInSuccess = function(response) {
 		if(this.stf=="1"){broadcastArray.push("facebook");}
 		var broadcast=broadcastArray.join(",");
 		params.push({"key":"broadcast","data":broadcast,"contentType":"text/plain"});
+		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		params.push({"key":"v","data":20140131,"contentType":"text/plain"});
+		// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 		
 	    var appController = Mojo.Controller.getAppController();
 		var cardStageController = appController.getStageController("mainStage");

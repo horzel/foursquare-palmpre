@@ -45,7 +45,10 @@ LeaderboardAssistant.prototype.setup = function() {
 	 	foursquareGet(this,{
 	 		endpoint: 'users/leaderboard',
 	 		requiresAuth: true,
-	 		parameters: {},
+	 		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 	   		onSuccess: this.getLeaderboardSuccess.bind(this),
 	   		onFailure: this.getLeaderboardFailed.bind(this)
 	 	});

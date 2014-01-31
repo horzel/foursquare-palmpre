@@ -384,6 +384,9 @@ AddVenueAssistant.prototype.okTapped = function() {
 			if(this.statemodel.value!=''){params.state=this.statemodel.value;}
 			if(this.zipModel.value!=''){params.zip=this.zipModel.value;}
 			params.ll=this.lat+','+this.long;
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			params.v=20140131;
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			if(this.phoneModel.value!=''){params.phone=this.phoneModel.value;}
 			if(this.twitterModel.value!=''){params.twitter=this.twitterModel.value;}
 			if(pcat.length>0){params.primaryCategoryId=pcat;}
@@ -402,6 +405,9 @@ AddVenueAssistant.prototype.okTapped = function() {
 			if(this.phoneModel.value!=''){params.phone=this.phoneModel.value;}
 			if(this.twitterModel.value!=''){params.twitter=this.twitterModel.value;}
 			params.ll=this.lat+','+this.long;
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			params.v=20140131;
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			if(pcat.length>0){params.primaryCategoryId=pcat;}
 		}
 		foursquarePost(this,{

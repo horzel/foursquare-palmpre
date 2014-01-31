@@ -20,7 +20,10 @@ DupeVenueAssistant.prototype.setup = function(widget) {
 	 foursquareGet(this.sceneAssistant,{
 	 	endpoint: 'venues.json',
 	 	requiresAuth: true,
-	   parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, q:this.query},
+	   // Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+	   //parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, q:this.query},
+	   parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, q:this.query, v:20140131},
+	   // Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 	   onSuccess: this.venueSuccess.bind(this),
 	   onFailure: this.venueFailed.bind(this)
 	 	

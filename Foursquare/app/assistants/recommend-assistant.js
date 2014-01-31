@@ -10,7 +10,10 @@ RecommendAssistant.prototype.setup = function() {
 		   method: 'get',
 		   evalJSON: 'force',
 		   requestHeaders: {Authorization: auth}, 
-		   parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, l:50},
+		   // Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning	
+		   //parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, l:50},
+		   parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, l:50, v:20140131},
+		   // Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning	
 		   onSuccess: this.venuesSuccess.bind(this),
 		   onFailure: this.venuesFailed.bind(this)
 		 });
@@ -211,7 +214,13 @@ RecommendAssistant.prototype.getVenue = function(r) {
 	   method: 'get',
 	   evalJSON: 'force',
 	   requestHeaders: {Authorization:auth},
-	   parameters: {vid:this.venueList[this.currentVenue].id},
+	   // Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning	
+	   //parameters: {vid:this.venueList[this.currentVenue].id},
+	   parameters: {
+		   vid:this.venueList[this.currentVenue].id,
+		   v=20140131
+		   },
+	   // Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning	
 	   onSuccess: this.getVenue.bind(this),
 	   onFailure: this.venuesFailed.bind(this)
 	 });

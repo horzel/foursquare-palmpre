@@ -103,7 +103,10 @@ TodosAssistant.prototype.getTips = function() {
 		 foursquareGet(this,{
 		 	endpoint: 'users/'+_globals.uid+'/todos',
 		 	requiresAuth: true,
-		   parameters: {ll:_globals.lat+","+_globals.long, sort: 'nearby'},
+		   // Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		   //parameters: {ll:_globals.lat+","+_globals.long, sort: 'nearby'},
+		   parameters: {ll:_globals.lat+","+_globals.long, sort: 'nearby', v: 20140131},
+		   // Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 		   onSuccess: this.getTipsSuccess.bind(this),
 		   onFailure: this.getTipsFailed.bind(this)		 	
 		 });
@@ -129,7 +132,10 @@ TodosAssistant.prototype.getRecentTodos = function() {
 		 foursquareGet(this,{
 		 	endpoint: 'users/'+_globals.uid+'/todos',
 		 	requiresAuth: true,
-		   parameters: {ll:_globals.lat+","+_globals.long, sort: 'recent'},
+		   // Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		   //parameters: {ll:_globals.lat+","+_globals.long, sort: 'recent'},
+		   parameters: {ll:_globals.lat+","+_globals.long, sort: 'recent', v: 20140131},
+		   // Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 		   onSuccess: this.getTipsSuccess.bind(this),
 		   onFailure: this.getTipsFailed.bind(this)		 	
 		 });
@@ -156,7 +162,10 @@ TodosAssistant.prototype.listDelete = function(event){
 	
 		foursquarePost(this,{
 			endpoint: 'tips/'+tip+'/unmark',
-			parameters: {},
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v: 20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: false,
 			onSuccess: this.unmarkTipSuccess.bind(this),
@@ -169,7 +178,13 @@ TodosAssistant.prototype.markTip = function(tip,how){
 		var url = 'https://api.foursquare.com/v1/tip/mark'+how+'.json';
 		foursquarePost(this,{
 			endpoint: 'tip/mark'+how+'.json',
-			parameters: {tid: tip},
+			// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning	
+			//parameters: {tid: tip},
+			parameters: {
+				tid: tip,
+				v: 20140131
+				},
+			// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning	
 			requiresAuth: true,
 			debug: false,
 			onSuccess: this.markTipSuccess.bind(this),

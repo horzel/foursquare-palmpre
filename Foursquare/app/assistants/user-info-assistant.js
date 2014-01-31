@@ -389,7 +389,10 @@ UserInfoAssistant.prototype.getUserInfo = function() {
 	 	foursquareGetMulti(this,{
 	 		endpoints: '/users/'+this.uid+',/users/leaderboard?neighbors=2,/users/'+this.uid+'/mayorships',
 	 		requiresAuth: true,
-	 		parameters: {},
+	 		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v: 20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 	 		debug: true,
 	   		onSuccess: this.getUserInfoSuccess.bind(this),
 	   		onFailure: this.getUserInfoFailed.bind(this)
@@ -1132,7 +1135,10 @@ UserInfoAssistant.prototype.showTipInfo = function(event) {
 	 		endpoint: 'users/'+this.uid+'/tips',
 	 		requiresAuth: true,
 	 		debug:true,
-	 		parameters: {sort:'recent'},
+	 		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {sort:'recent'},
+			parameters: {sort:'recent', v: 20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 	   		onSuccess: this.getTipsSuccess.bind(this),
 	   		onFailure: this.getTipsFailed.bind(this)
 	 	});
@@ -1165,7 +1171,10 @@ UserInfoAssistant.prototype.showTodos = function(event) {
 	 		endpoint: 'users/'+this.uid+'/todos',
 	 		requiresAuth: true,
 	 		debug:true,
-	 		parameters: {sort:'recent'},
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+	 		//parameters: {sort:'recent'},
+			parameters: {sort:'recent', v:20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 	   		onSuccess: this.getTodosSuccess.bind(this),
 	   		onFailure: this.getTipsFailed.bind(this)
 	 	});
@@ -1237,7 +1246,10 @@ UserInfoAssistant.prototype.showFriends = function(event) {
 		 	endpoint: 'users/'+this.uid+'/friends',
 		 	requiresAuth: true,
 		 	debug: true,
-		 	parameters: {},
+		 	// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			onSuccess: this.getFriendsSuccess.bind(this),
 		    onFailure: this.getFriendsFailed.bind(this)		 	
 		 });
@@ -1268,7 +1280,10 @@ UserInfoAssistant.prototype.showVenueHistory = function(event) {
 		 	endpoint: 'users/'+this.uid+'/venuehistory',
 		 	requiresAuth: true,
 		 	debug: true,
-		 	parameters: {},
+		 	// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			onSuccess: this.getVenueHistorySuccess.bind(this),
 		    onFailure: this.getVenueHistoryFailed.bind(this)		 	
 		 });
@@ -1565,7 +1580,10 @@ logthis("friends success");
 		this.controller.modelChanged(this.tabModel);
 		 foursquareGet(this,{
 		 	endpoint: 'users/requests',
-		 	requiresAuth: true,
+		 	// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+			parameters: {v:20140131},
+			// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+			requiresAuth: true,
 		 	debug: true,
 			onSuccess: this.requestFriendsSuccess.bind(this),
 		    onFailure: this.getFriendsFailed.bind(this)
@@ -1617,7 +1635,10 @@ logthis("friends failed");
 UserInfoAssistant.prototype.approveFriend = function(event) {
 	foursquarePost(this,{
 		endpoint: 'users/'+this.uid+'/approve',
-		parameters: {},
+		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		//parameters: {},
+		parameters: {v:20140131},
+		// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 		requiresAuth: true,
 		debug: false,
 		onSuccess: this.approveSuccess.bind(this),
@@ -1654,7 +1675,10 @@ UserInfoAssistant.prototype.denyFriend = function(event) {
 	foursquarePost(this, {
 		endpoint: 'users/'+this.uid+'/deny',
 		requiresAuth: true,
-		parameters: {},
+		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		//parameters: {},
+		parameters: {v:20140131},
+		// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 		debug: false,
 		onSuccess: this.denySuccess.bind(this),
 		onFailure: this.denyFailed.bind(this)
@@ -1690,7 +1714,10 @@ UserInfoAssistant.prototype.removeFriend = function(event) {
 	foursquarePost(this, {
 		endpoint: 'users/'+this.uid+'/unfriend',
 		requiresAuth: true,
-		parameters: {},
+		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		//parameters: {},
+		parameters: {v:20140131},
+		// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 		debug: false,
 		onSuccess: this.removeSuccess.bind(this),
 		onFailure: this.removeFailed.bind(this)
@@ -1845,7 +1872,12 @@ UserInfoAssistant.prototype.setPings = function(event) {
 		this.getpings="true";
 		var val=true;	
 	}
-	var params={value: val};
+	// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+	//var params={value: val};
+	var params={
+	value: val,
+	v: 20140131};
+	// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 
 	
 	foursquarePost(this,{
@@ -1883,7 +1915,10 @@ UserInfoAssistant.prototype.pingFailed = function(response) {
 UserInfoAssistant.prototype.addFriend = function(event) {
 	foursquarePost(this, {
 		endpoint: 'users/'+this.uid+'/request',
-		parameters: {},
+		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		//parameters: {},
+		parameters: {v: 20140131},
+		// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 		requiresAuth: true,
 		debug: false,
 		onSuccess: this.addSuccess.bind(this),
@@ -1923,7 +1958,11 @@ UserInfoAssistant.prototype.getHistory = function(event) {
 	
 		 foursquareGet(this, {
 		 	endpoint: 'users/'+uid+'/checkins',
-		 	parameters: {afterTimestamp:stamp,limit:500},
+ 			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {afterTimestamp:stamp,limit:500},
+			parameters: {afterTimestamp:stamp,limit:500, v: 20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			
 		 	debug: true,
 		 	requiresAuth: true,
 		    onSuccess: this.historySuccess.bind(this),
@@ -1947,7 +1986,10 @@ UserInfoAssistant.prototype.loadMoreHistory = function(list,item,dom){
 		if(this.uid=_globals.uid){uid='self';}
 		foursquareGet(this, {
 		 	endpoint: 'users/'+uid+'/checkins',
-		 	parameters: {limit:'50',offset:this.historyModel.items.length},
+		 	// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//parameters: {limit:'50',offset:this.historyModel.items.length},
+			parameters: {limit:'50',offset:this.historyModel.items.length,v: 20140131},
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 		 	debug: true,
 		 	requiresAuth: true,
 		    onSuccess: this.historyMoreSuccess.bind(this),
@@ -2190,13 +2232,22 @@ UserInfoAssistant.prototype.searchFriends = function(how,query) {
 	switch(how){
 		case "twitter":
 			query=this.user.contact.twitter;
-			what={twitterSource: query};
+		 	// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//what={twitterSource: query};
+			what={twitterSource: query, v:20140131};
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			break;
 		case "phone":
-			what={phone: query};
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//what={phone: query};
+			what={phone: query, v:20140131};
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			break;
 		case "name":
-			what={name: query};
+			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			//what={name: query};
+			what={name: query, v:20140131};
+			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 			break;
 	}
 	this.query=query;

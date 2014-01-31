@@ -39,7 +39,10 @@ BadgesAssistant.prototype.getBadges = function(){
  		endpoint: 'users/'+this.params.id+'/badges',
  		requiresAuth: true,
  		debug:true,
- 		parameters: {sort:'recent'},
+ 		// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+		//parameters: {sort:'recent'},
+		parameters: {sort:'recent', v: 20140131},
+		// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
    		onSuccess: this.getBadgesSuccess.bind(this),
    		onFailure: this.getBadgesFailed.bind(this)
  	});

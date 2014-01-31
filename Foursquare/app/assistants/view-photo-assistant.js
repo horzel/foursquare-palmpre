@@ -61,7 +61,10 @@ ViewPhotoAssistant.prototype.flagTapped = function(event){
 			if(arg!==undefined){
 				foursquarePost(this,{
 					endpoint: 'photos/'+pid+'/flag',
-					parameters: {problem:arg},
+					// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+					//parameters: {problem:arg},
+					parameters: {problem:arg, v:20140131},
+					// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
 					requiresAuth: true,
 					debug: true,
 					onSuccess: function(r){

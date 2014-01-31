@@ -513,6 +513,7 @@ AppAssistant.prototype.handleLaunch = function (launchParams) {
 						_globals.loadPrefs();
 						
 
+						 // Herrie 31-Jan-2013 START TODO Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
 						 var url = "https://api.foursquare.com/v1/categories.json";
 						 var request = new Ajax.Request(url, {
 						   method: 'get',

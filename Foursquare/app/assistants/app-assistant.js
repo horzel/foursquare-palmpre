@@ -78,7 +78,10 @@ AppAssistant.prototype.prelaunch = function(){
 	 	endpoint: 'users/self',
 	 	requiresAuth: true,
 	 	ignoreErrors: true,
-	 	parameters: {},
+	 	// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+		//parameters: {},
+		parameters: {v: 20140131},
+		// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
 	 	onSuccess: _globals.userSuccess.bind(this),
 	 	onFailure: _globals.userFailed.bind(this),
 	 	requiresAuth: true
@@ -256,7 +259,10 @@ AppAssistant.prototype.handleLaunch = function (launchParams) {
 					endpoint: 'checkins/recent',
 					requiresAuth: true,
 					debug: true,
-					parameters: {afterTimestamp: this.lastUpdate, filterPings: 1},
+					// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+					//parameters: {afterTimestamp: this.lastUpdate, filterPings: 1},
+					parameters: {afterTimestamp: this.lastUpdate, filterPings: 1, v: 20140131},
+					// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
 					onSuccess: this.feedSuccess.bind(this),
 					onFailure: this.feedFailed.bind(this)
 				});
