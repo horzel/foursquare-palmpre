@@ -320,10 +320,10 @@ FriendsListAssistant.prototype.getFeed = function(event) {
 		 	foursquareGet(this, {
 		 		endpoint: 'checkins/recent',
 		 		requiresAuth: true,
-			   // Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			   //parameters: {ll:_globals.lat+","+_globals.long},
-			   parameters: {ll:_globals.lat+","+_globals.long, v: 20140131},
-			   // Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			   parameters: {ll:_globals.lat+","+_globals.long, v:_globals.v},
+			   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			   onSuccess: this.feedSuccess.bind(this),
 			   onFailure: this.getFriendsFailed.bind(this)	 		
 		 	});

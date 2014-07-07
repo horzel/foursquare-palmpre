@@ -42,10 +42,10 @@ function NearbyVenuesAssistant(a, ud, un, pw,i,ss,q,what) {
 		 	endpoint: 'users/self',
 		 	requiresAuth: true,
 		 	ignoreErrors: true,
-		 	// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			//parameters: {},
-			parameters: {v:20140131},
-			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		 	onSuccess: _globals.userSuccess.bind(this),
 		 	onFailure: _globals.userFailed.bind(this),
 		 	requiresAuth: true
@@ -644,10 +644,10 @@ NearbyVenuesAssistant.prototype.getVenues = function(latitude, longitude,hacc,va
 	var vlimit=_globals.venueCount || 25;
 	 
 	 foursquareGetMulti(this, {
-	 	// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+	 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
 		//endpoints: '/venues/search?ll='+encodeURIComponent(latitude+','+longitude)+'&llAcc='+hacc+'&altAcc='+vacc+'&alt='+alt+'&limit='+vlimit+'&query='+encodeURIComponent(query)+'&intent=checkin,/specials/search?ll='+encodeURIComponent(latitude+','+longitude)+'&llAcc='+hacc+'&altAcc='+vacc+'&alt='+alt+'&limit=50',
-		endpoints: '/venues/search?ll='+encodeURIComponent(latitude+','+longitude)+'&llAcc='+hacc+'&altAcc='+vacc+'&alt='+alt+'&limit='+vlimit+'&query='+encodeURIComponent(query)+'&intent=checkin,/specials/search?ll='+encodeURIComponent(latitude+','+longitude)+'&llAcc='+hacc+'&altAcc='+vacc+'&alt='+alt+'&limit=50&v=20140131',
-	 	// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+		endpoints: '/venues/search?ll='+encodeURIComponent(latitude+','+longitude)+'&llAcc='+hacc+'&altAcc='+vacc+'&alt='+alt+'&limit='+vlimit+'&query='+encodeURIComponent(query)+'&intent=checkin,/specials/search?ll='+encodeURIComponent(latitude+','+longitude)+'&llAcc='+hacc+'&altAcc='+vacc+'&alt='+alt+'&limit=50&v=_globals.v',
+	 	// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 		requiresAuth: true,
 	   onSuccess: this.nearbyVenueRequestSuccess.bind(this),
 	   onFailure: this.nearbyVenueRequestFailed.bind(this)	,

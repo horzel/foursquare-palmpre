@@ -385,10 +385,10 @@ CheckinResultAssistant.prototype.okTappedCheckin = function() {
 CheckinResultAssistant.prototype.tipDone = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/markdone',
-			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			//parameters: {},
-			parameters: {v: 20140131},
-			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -413,10 +413,10 @@ CheckinResultAssistant.prototype.tipDone = function() {
 CheckinResultAssistant.prototype.tipRemove = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/unmark',
-			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			//parameters: {},
-			parameters: {v: 20140131},
-			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -442,10 +442,10 @@ CheckinResultAssistant.prototype.tipRemove = function() {
 CheckinResultAssistant.prototype.tipAdd = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/marktodo',
-			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			//parameters: {},
-			parameters: {v: 20140131},
-			// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){

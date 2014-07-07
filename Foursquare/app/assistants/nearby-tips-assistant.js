@@ -105,10 +105,10 @@ NearbyTipsAssistant.prototype.getTips = function() {
 		 foursquareGet(this,{
 		 	endpoint: 'tips/search',
 		 	requiresAuth: true,
-		   // Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 		   //parameters: {ll:_globals.lat+","+_globals.long, filter: 'nearby'},
-		   parameters: {ll:_globals.lat+","+_globals.long, filter: 'nearby', v:20140131},
-		   // Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		   parameters: {ll:_globals.lat+","+_globals.long, filter: 'nearby', v:_globals.v},
+		   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		   onSuccess: this.getTipsSuccess.bind(this),
 		   onFailure: this.getTipsFailed.bind(this)		 	
 		 });
@@ -134,10 +134,10 @@ NearbyTipsAssistant.prototype.getFriendTips = function() {
 		 foursquareGet(this,{
 		 	endpoint: 'tips/search',
 		 	requiresAuth: true,
-		   // Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 		   //parameters: {ll:_globals.lat+","+_globals.long, filter: 'friends'},
-		   parameters: {ll:_globals.lat+","+_globals.long, filter: 'friends', v:20140131},
-		   // Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		   parameters: {ll:_globals.lat+","+_globals.long, filter: 'friends', v:_globals.v},
+		   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		   onSuccess: this.getTipsSuccess.bind(this),
 		   onFailure: this.getTipsFailed.bind(this)		 	
 		 });
@@ -164,10 +164,10 @@ NearbyTipsAssistant.prototype.listDelete = function(event){
 	
 		foursquarePost(this,{
 			endpoint: 'tips/'+tip+'/unmark',
-			// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			//parameters: {},
-			parameters: {v:20140131},
-			// Herrie 31-Jan-2013 ENDT add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: this.unmarkTipSuccess.bind(this),
@@ -181,13 +181,13 @@ NearbyTipsAssistant.prototype.markTip = function(tip,how){
 		var url = 'https://api.foursquare.com/v1/tip/mark'+how+'.json';
 		foursquarePost(this,{
 			endpoint: 'tip/mark'+how+'.json',
-			// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			//parameters: {tid: tip},
 			parameters: {
 				tid: tip, 
-				v: 20140131
+				v:_globals.v
 				},
-			// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: false,
 			onSuccess: this.markTipSuccess.bind(this),

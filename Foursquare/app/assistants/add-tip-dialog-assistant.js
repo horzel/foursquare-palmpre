@@ -118,9 +118,9 @@ logthis("oktapped");
 		var params={
 				venueId: this.vid,
 				text: this.tipModel.value,
-				// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
-				v: 20140131,
-				// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+				v:_globals.v,
+				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 				url: this.tipURLModel.value
 			};
 		foursquarePost(this.sceneAssistant,{
@@ -135,9 +135,9 @@ logthis("oktapped");
 	}else{
 		var params={
 				venueId: this.vid,
-				// Herrie 31-Jan-2013 START Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
-				v: 20140131,
-				// Herrie 31-Jan-2013 END Versioning as per new requirements at https://developer.foursquare.com/overview/versioning				
+				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+				v:_globals.v,
+				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 				text: this.tipModel.value
 			};
 		foursquarePost(this.sceneAssistant,{
@@ -165,9 +165,9 @@ AddTipDialogAssistant.prototype.tipSuccess = function(r) {
 		params.push({"key":"alt","data":_globals.altitude,"contentType":"text/plain"});
 		params.push({"key":"altAcc","data":_globals.vacc,"contentType":"text/plain"});
 		params.push({"key":"oauth_token","data":_globals.token,"contentType":"text/plain"});
-		// Herrie 31-Jan-2013 START add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
-		params.push({"key":"v","data":20140131,"contentType":"text/plain"});
-		// Herrie 31-Jan-2013 END add Versioning as per new requirements at https://developer.foursquare.com/overview/versioning
+		// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+		params.push({"key":"v","data":_globals.v,"contentType":"text/plain"});
+		// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		
 	    var appController = Mojo.Controller.getAppController();
 		var cardStageController = appController.getStageController("mainStage");
