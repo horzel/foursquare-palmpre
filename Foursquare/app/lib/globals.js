@@ -60,6 +60,7 @@ _globals.whatsnew={
 	"id":"whatsnew",
 	"icon":"",
 	"pages":[
+		"Here's what's new in foursquare webOS <b>v2.8.9</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/herrie1982\">@Herrie1982</a><ul><li>Updates to processing of image url's for user pictures thanks to @Horzel_webOS!</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.8</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/herrie1982\">@Herrie1982</a><ul><li>Fixed all the Foursquare requests to include a proper version so the app will work after 01-Jul-2014</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.7</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/zhephree\">@zhephree</a><ul><li>Fixed all the Foursquare requests to include Version which is required since 28-Jan-2014</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.5</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/zhephree\">@zhephree</a><ul><li>Added Project Macaw as a Twitter client option<li>Fixed sig resolving from 4sq.com links passed from other apps</li></ul>",
