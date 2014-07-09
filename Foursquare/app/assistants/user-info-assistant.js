@@ -389,7 +389,10 @@ UserInfoAssistant.prototype.getUserInfo = function() {
 	 	foursquareGetMulti(this,{
 	 		endpoints: '/users/'+this.uid+',/users/leaderboard?neighbors=2,/users/'+this.uid+'/mayorships',
 	 		requiresAuth: true,
-	 		parameters: {},
+	 		// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 	 		debug: true,
 	   		onSuccess: this.getUserInfoSuccess.bind(this),
 	   		onFailure: this.getUserInfoFailed.bind(this)
@@ -617,7 +620,10 @@ logthis("uid="+this.uid);
 	this.user=userResponse.user;
 	this.info=[];
 	//user info
-	this.controller.get("userPic").src=userResponse.user.photo;
+	// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+	// this.controller.get("userPic").src=userResponse.user.photo;
+	this.controller.get("userPic").src=userResponse.user.photo.prefix+"original"+userResponse.user.photo.suffix;
+	// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size 
 	var lname=(userResponse.user.lastName != undefined)? userResponse.user.lastName: "";
 	this.firstname=userResponse.user.firstName;
 logthis("1");	
@@ -640,7 +646,10 @@ logthis("2");
 		itm.icon="images/facebook_32.png";
 		itm.caption="Facebook";
 		itm.action="url";
-		itm.url='http://touch.facebook.com/#/profile.php?id='+userResponse.user.contact.facebook;
+		// horzel 2014.07.09 Start, changes to url, # not needed anymore
+		// itm.url='http://touch.facebook.com/#/profile.php?id='+userResponse.user.contact.facebook;
+		itm.url='http://touch.facebook.com/profile.php?id='+userResponse.user.contact.facebook;
+		// horzel 2014.07.09 End,   changes to url, # not needed anymore
 		this.info.push(itm);
 	}
 logthis("3");	
@@ -806,8 +815,10 @@ logthis("handled pings");
 	if(userResponse.user.checkins != undefined) {
 	}
 
+	// horzel 2014.07.09 Update needed for this part since the API does not return .user.todo anymore, todo> list
 
 	//todo list
+	
 	if(userResponse.user.todos){
 		if(userResponse.user.todos.count>0){
 			this.controller.get("todo-count").update(userResponse.user.todos.count+" items on To-Do list");
@@ -979,7 +990,10 @@ logthis("here0");
 					logthis("building thumbs");
 					var user=friendstuff.groups[fg].items[f];
 					logthis(Object.toJSONuser);
-					var purl=user.photo;
+					// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+					// var purl=user.photo
+					var purl=user.photo.prefix+"32"+user.photo.suffix;
+					// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 					friendAvatars+='<img src="'+purl+'" width="32" height="32" class="venue-photo-thumb"/>';
 					thumbCount++;
 					
@@ -1039,7 +1053,10 @@ logthis("here0");
 		var leaderboardHTML='';
 		for(var u=0;u<lboard.length; u++){
 			var rank=lboard[u].rank;
-			var photo=lboard[u].user.photo;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+			//var photo=lboard[u].user.photo
+			var photo=lboard[u].user.photo.prefix+"32"+lboard[u].user.photo.suffix;
+			// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 			var fname=lboard[u].user.firstName;
 			var lname=(lboard[u].user.lastName)? lboard[u].user.lastName: '';
 			var uname=fname + " "+ lname;
@@ -1132,7 +1149,10 @@ UserInfoAssistant.prototype.showTipInfo = function(event) {
 	 		endpoint: 'users/'+this.uid+'/tips',
 	 		requiresAuth: true,
 	 		debug:true,
-	 		parameters: {sort:'recent'},
+	 		// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {sort:'recent'},
+			parameters: {sort:'recent', v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 	   		onSuccess: this.getTipsSuccess.bind(this),
 	   		onFailure: this.getTipsFailed.bind(this)
 	 	});
@@ -1165,7 +1185,10 @@ UserInfoAssistant.prototype.showTodos = function(event) {
 	 		endpoint: 'users/'+this.uid+'/todos',
 	 		requiresAuth: true,
 	 		debug:true,
-	 		parameters: {sort:'recent'},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+	 		//parameters: {sort:'recent'},
+			parameters: {sort:'recent', v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 	   		onSuccess: this.getTodosSuccess.bind(this),
 	   		onFailure: this.getTipsFailed.bind(this)
 	 	});
@@ -1237,7 +1260,10 @@ UserInfoAssistant.prototype.showFriends = function(event) {
 		 	endpoint: 'users/'+this.uid+'/friends',
 		 	requiresAuth: true,
 		 	debug: true,
-		 	parameters: {},
+		 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			onSuccess: this.getFriendsSuccess.bind(this),
 		    onFailure: this.getFriendsFailed.bind(this)		 	
 		 });
@@ -1268,7 +1294,10 @@ UserInfoAssistant.prototype.showVenueHistory = function(event) {
 		 	endpoint: 'users/'+this.uid+'/venuehistory',
 		 	requiresAuth: true,
 		 	debug: true,
-		 	parameters: {},
+		 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			onSuccess: this.getVenueHistorySuccess.bind(this),
 		    onFailure: this.getVenueHistoryFailed.bind(this)		 	
 		 });
@@ -1512,7 +1541,10 @@ logthis("friends success");
 
 			for(var f=0;f<max;f++){
 			logthis("in mutual loop");
-				avatars+='<img width="32" height="32" src="'+this.isfriends[f].photo+'" class="friend-avatar">';
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+			//avatars+='<img width="32" height="32" src="'+this.isfriends[f].photo+'" class="friend-avatar">';
+			avatars+='<img width="32" height="32" src="'+this.isfriends[f].photo.prefix+"32"+this.isfriends[f].photo.suffix+'" class="friend-avatar">';
+			// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 			}
 			logthis("out of mutual loop");
 			this.controller.get("friends-count").innerHTML+=' ('+this.isfriends.length+' in common)';
@@ -1526,7 +1558,10 @@ logthis("friends success");
 			for(var f=0;f<fmax;f++){
 				logthis("in other loop");
 				if(this.friendList[f].relationship!="friend" && this.friendList[f].relationship!="self"){
-					avatars+='<img width="32" height="32" src="'+this.friendList[f].photo+'" class="friend-avatar">';
+					// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+					//avatars+='<img width="32" height="32" src="'+this.friendList[f].photo+'" class="friend-avatar">';
+					avatars+='<img width="32" height="32" src="'+this.friendList[f].photo.prefix+"32"+this.isfriends[f].photo.suffix+'" class="friend-avatar">';
+					// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 				}
 			}
 			logthis("out of other loop");
@@ -1565,7 +1600,10 @@ logthis("friends success");
 		this.controller.modelChanged(this.tabModel);
 		 foursquareGet(this,{
 		 	endpoint: 'users/requests',
-		 	requiresAuth: true,
+		 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
+			requiresAuth: true,
 		 	debug: true,
 			onSuccess: this.requestFriendsSuccess.bind(this),
 		    onFailure: this.getFriendsFailed.bind(this)
@@ -1617,7 +1655,10 @@ logthis("friends failed");
 UserInfoAssistant.prototype.approveFriend = function(event) {
 	foursquarePost(this,{
 		endpoint: 'users/'+this.uid+'/approve',
-		parameters: {},
+		// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+		//parameters: {},
+		parameters: {v:_globals.v},
+		// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		requiresAuth: true,
 		debug: false,
 		onSuccess: this.approveSuccess.bind(this),
@@ -1654,7 +1695,10 @@ UserInfoAssistant.prototype.denyFriend = function(event) {
 	foursquarePost(this, {
 		endpoint: 'users/'+this.uid+'/deny',
 		requiresAuth: true,
-		parameters: {},
+		// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+		//parameters: {},
+		parameters: {v:_globals.v},
+		// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		debug: false,
 		onSuccess: this.denySuccess.bind(this),
 		onFailure: this.denyFailed.bind(this)
@@ -1690,7 +1734,10 @@ UserInfoAssistant.prototype.removeFriend = function(event) {
 	foursquarePost(this, {
 		endpoint: 'users/'+this.uid+'/unfriend',
 		requiresAuth: true,
-		parameters: {},
+		// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+		//parameters: {},
+		parameters: {v:_globals.v},
+		// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		debug: false,
 		onSuccess: this.removeSuccess.bind(this),
 		onFailure: this.removeFailed.bind(this)
@@ -1845,7 +1892,12 @@ UserInfoAssistant.prototype.setPings = function(event) {
 		this.getpings="true";
 		var val=true;	
 	}
-	var params={value: val};
+	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+	//var params={value: val};
+	var params={
+	value: val,
+	v:_globals.v};
+	// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 
 	
 	foursquarePost(this,{
@@ -1883,7 +1935,10 @@ UserInfoAssistant.prototype.pingFailed = function(response) {
 UserInfoAssistant.prototype.addFriend = function(event) {
 	foursquarePost(this, {
 		endpoint: 'users/'+this.uid+'/request',
-		parameters: {},
+		// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+		//parameters: {},
+		parameters: {v:_globals.v},
+		// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		requiresAuth: true,
 		debug: false,
 		onSuccess: this.addSuccess.bind(this),
@@ -1923,7 +1978,11 @@ UserInfoAssistant.prototype.getHistory = function(event) {
 	
 		 foursquareGet(this, {
 		 	endpoint: 'users/'+uid+'/checkins',
-		 	parameters: {afterTimestamp:stamp,limit:500},
+ 			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {afterTimestamp:stamp,limit:500},
+			parameters: {afterTimestamp:stamp,limit:500, v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
+			
 		 	debug: true,
 		 	requiresAuth: true,
 		    onSuccess: this.historySuccess.bind(this),
@@ -1947,7 +2006,10 @@ UserInfoAssistant.prototype.loadMoreHistory = function(list,item,dom){
 		if(this.uid=_globals.uid){uid='self';}
 		foursquareGet(this, {
 		 	endpoint: 'users/'+uid+'/checkins',
-		 	parameters: {limit:'50',offset:this.historyModel.items.length},
+		 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {limit:'50',offset:this.historyModel.items.length},
+			parameters: {limit:'50',offset:this.historyModel.items.length,v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		 	debug: true,
 		 	requiresAuth: true,
 		    onSuccess: this.historyMoreSuccess.bind(this),
@@ -1969,7 +2031,10 @@ UserInfoAssistant.prototype.historySuccess = function(response) {
 			this.checkinlist[c].idx=c;
 			this.checkinlist[c].firstname=this.user.firstName;
 			this.checkinlist[c].lastname=(this.user.lastName)? ' '+this.user.lastName: '';
-			this.checkinlist[c].photo=this.user.photo;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+			//this.checkinlist[c].photo=this.user.photo;
+			this.checkinlist[c].photo=this.user.photo.prefix+"32"+this.user.photo.suffix;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
 			
 			switch(j.checkins.items[c].type){
 				case "checkin":
@@ -2060,7 +2125,11 @@ UserInfoAssistant.prototype.historyMoreSuccess = function(response) {
 			this.checkinlist[c].idx=c;
 			this.checkinlist[c].firstname=this.user.firstName;
 			this.checkinlist[c].lastname=(this.user.lastName)? ' '+this.user.lastName: '';
-			this.checkinlist[c].photo=this.user.photo;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+			//this.checkinlist[c].photo=this.user.photo;
+			this.checkinlist[c].photo=this.user.photo.prefix+"32"+this.user.photo.suffix;
+			
+			// horzel 2014.07.09 End, changes to url for picture, now build from two fields and size
 			
 			switch(j.checkins.items[c].type){
 				case "checkin":
@@ -2190,13 +2259,22 @@ UserInfoAssistant.prototype.searchFriends = function(how,query) {
 	switch(how){
 		case "twitter":
 			query=this.user.contact.twitter;
-			what={twitterSource: query};
+		 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//what={twitterSource: query};
+			what={twitterSource: query, v:_globals.v};
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			break;
 		case "phone":
-			what={phone: query};
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//what={phone: query};
+			what={phone: query, v:_globals.v};
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			break;
 		case "name":
-			what={name: query};
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//what={name: query};
+			what={name: query, v:_globals.v};
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			break;
 	}
 	this.query=query;

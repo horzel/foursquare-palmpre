@@ -124,7 +124,10 @@ CheckinResultAssistant.prototype.initData = function(checkinJSON) {
 				logthis(Object.toJSON(lboard));
 				for(var u=0;u<lboard.length; u++){
 					var rank=lboard[u].rank;
-					var photo=lboard[u].user.photo;
+					// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+					//var photo=lboard[u].user.photo;
+					var photo=lboard[u].user.photo.prefix+"32"+lboard[u].user.photo.suffix;
+					// horzel 2014.07.09 End, changes to url for picture, now build from two fields and size
 					var fname=lboard[u].user.firstName;
 					var lname=(lboard[u].user.lastName)? lboard[u].user.lastName: '';
 					var uname=fname + " "+ lname;
@@ -327,7 +330,10 @@ if(1==1){
 			}
 			var tipuserfn=tip.user.firstName;
 			var tipuserln=(tip.user.lastName!=undefined)? tip.user.lastName: "";
-			var tipuserpic=tip.user.photo;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+			//var tipuserpic=tip.user.photo;
+			var tipuserpic=tip.user.photo.prefix+"32"+tip.user.photo.suffix;
+			// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 			
 			/*this.controller.showAlertDialog({
 				onChoose: function(value) {},
@@ -385,7 +391,10 @@ CheckinResultAssistant.prototype.okTappedCheckin = function() {
 CheckinResultAssistant.prototype.tipDone = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/markdone',
-			parameters: {},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -410,7 +419,10 @@ CheckinResultAssistant.prototype.tipDone = function() {
 CheckinResultAssistant.prototype.tipRemove = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/unmark',
-			parameters: {},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -436,7 +448,10 @@ CheckinResultAssistant.prototype.tipRemove = function() {
 CheckinResultAssistant.prototype.tipAdd = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/marktodo',
-			parameters: {},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){

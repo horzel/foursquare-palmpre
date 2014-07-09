@@ -150,7 +150,10 @@ ExploreAssistant.prototype.setup = function() {
 	if(loadTrending){
 		foursquareGet(this,{
 			endpoint: 'venues/trending',
-			parameters: {ll: _globals.lat+","+_globals.long, limit: 10, radius: this.exploreRadius},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {ll: _globals.lat+","+_globals.long, limit: 10, radius: this.exploreRadius},
+			parameters: {ll: _globals.lat+","+_globals.long, limit: 10, radius: this.exploreRadius, v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			ignoreErrors: false,
 			debug: true,
@@ -400,8 +403,11 @@ ExploreAssistant.prototype.keywordTapped = function(event) {
 ExploreAssistant.prototype.exploreFunc = function(params) {
 
 	this.controller.get("resultListBox").hide();
-	var p={ll:_globals.lat+","+_globals.long, radius:this.exploreRadius, basis: this.exploreSource}
-
+	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+	//var p={ll:_globals.lat+","+_globals.long, radius:this.exploreRadius, basis: this.exploreSource}
+	var p={ll:_globals.lat+","+_globals.long, radius:this.exploreRadius, basis: this.exploreSource, v:_globals.v}
+	// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
+	
 	if(params.section!=undefined){
 		p.section=params.section;
 	}
@@ -573,7 +579,10 @@ ExploreAssistant.prototype.exploreSuccess = function(r) {
 				var tip=tmp_item.tips[0];
 				logthis("7-6");
 				if(tip.user.relationship=="friend"){
-					tip.tipPhoto=tip.user.photo;
+					// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+					//tip.tipPhoto=tip.user.photo;
+					tip.tipPhoto=tip.user.photo.prefix+"32"+tip.user.photo.suffix;
+					// horzel 2014.07.09 End  , changes to url for picture, now build from two fields and size
 				}else{
 					tip.tipPhoto='images/explore-tips-icon.png';
 				}
