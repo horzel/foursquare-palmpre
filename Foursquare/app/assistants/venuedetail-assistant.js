@@ -706,7 +706,10 @@ logthis("passed todo");
 			var lname=(j.venue.mayor.user.lastName != undefined)? j.venue.mayor.user.lastName: '';
 			this.mayorId=j.venue.mayor.user.id;
 	
-			this.controller.get("mayorPic").src=j.venue.mayor.user.photo;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+			//this.controller.get("mayorPic").src=j.venue.mayor.user.photo;
+			this.controller.get("mayorPic").src=j.venue.mayor.user.photo.prefix+"32"+j.venue.mayor.user.photo.suffix;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
 			this.controller.get("mayorPic").setAttribute("data",j.venue.mayor.user.id);
 			this.controller.get("mayorPic").setAttribute("user",j.venue.mayor.user.firstName+" "+lname);
 			
@@ -716,7 +719,10 @@ logthis("passed todo");
 	
 	
 	
-			this.controller.get("mayorPic2").src=j.venue.mayor.user.photo;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+			//this.controller.get("mayorPic2").src=j.venue.mayor.user.photo;
+			this.controller.get("mayorPic2").src=j.venue.mayor.user.photo.prefix+"32"+j.venue.mayor.user.photo.suffix;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
 			this.controller.get("mayorPic2").setAttribute("data",j.venue.mayor.user.id);
 			this.controller.get("mayorPic2").setAttribute("user",j.venue.mayor.user.firstName+" "+lname);
 			this.controller.get("mayorPicBorder2").setAttribute("data",j.venue.mayor.user.id);
@@ -1406,7 +1412,10 @@ logthis("done mayor");
 						
 						//create images to display
 						if(fh<6){
-							friendsPics+='<img width="32" height="32" src="'+friendsHere[fh].user.photo+'" data="'+friendsHere[fh].user.id+'" class="friend-avatar">';
+							// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+							//friendsPics+='<img width="32" height="32" src="'+friendsHere[fh].user.photo+'" data="'+friendsHere[fh].user.id+'" class="friend-avatar">';
+							friendsPics+='<img width="32" height="32" src="'+friendsHere[fh].user.photo.prefix+"32"+friendsHere[fh].user.photo.suffix+'" data="'+friendsHere[fh].user.id+'" class="friend-avatar">';
+							// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 						}
 						
 
@@ -1469,7 +1478,10 @@ logthis("done mayor");
 						
 						//create images to display
 						if(uh<6){
-							usersPics+='<img width="32" height="32" src="'+usersHere[uh].user.photo+'" data="'+usersHere[uh].user.id+'" class="friend-avatar">';
+							// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+							//usersPics+='<img width="32" height="32" src="'+usersHere[uh].user.photo+'" data="'+usersHere[uh].user.id+'" class="friend-avatar">';
+							usersPics+='<img width="32" height="32" src="'+usersHere[uh].user.photo.prefix+"32"+usersHere[uh].user.photo.suffix+'" data="'+usersHere[uh].user.id+'" class="friend-avatar">';
+							// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 						}
 						
 						//join name
@@ -1517,7 +1529,10 @@ logthis("done mayor");
 			
 			//create object for template
 			var userHash={
-				photo: herestufffull.items[wh].user.photo,
+				// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+				//photo: herestufffull.items[wh].user.photo,
+				photo: herestufffull.items[wh].user.photo.prefix+"32"+herestufffull.items[wh].user.photo.suffix,
+				// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
 				uid: herestufffull.items[wh].user.id,
 				t: uh,
 				username: username,

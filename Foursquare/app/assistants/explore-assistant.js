@@ -579,7 +579,10 @@ ExploreAssistant.prototype.exploreSuccess = function(r) {
 				var tip=tmp_item.tips[0];
 				logthis("7-6");
 				if(tip.user.relationship=="friend"){
-					tip.tipPhoto=tip.user.photo;
+					// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+					//tip.tipPhoto=tip.user.photo;
+					tip.tipPhoto=tip.user.photo.prefix+"32"+tip.user.photo.suffix;
+					// horzel 2014.07.09 End  , changes to url for picture, now build from two fields and size
 				}else{
 					tip.tipPhoto='images/explore-tips-icon.png';
 				}

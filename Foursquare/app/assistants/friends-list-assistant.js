@@ -379,7 +379,10 @@ FriendsListAssistant.prototype.feedSuccess = function(response) {
 				this.feedList[f].idx=f;
 				this.feedList[f].firstname=j.recent[f].user.firstName;
 				this.feedList[f].lastname=j.recent[f].user.lastName;
-				this.feedList[f].photo=j.recent[f].user.photo;
+				// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+				//this.feedList[f].photo=j.recent[f].user.photo;
+				this.feedList[f].photo=j.recent[f].user.photo.prefix+"32"+j.recent[f].user.photo.suffix;
+				// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
 				
 
 				switch(j.recent[f].type){

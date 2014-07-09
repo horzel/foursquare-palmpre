@@ -124,7 +124,10 @@ CheckinResultAssistant.prototype.initData = function(checkinJSON) {
 				logthis(Object.toJSON(lboard));
 				for(var u=0;u<lboard.length; u++){
 					var rank=lboard[u].rank;
-					var photo=lboard[u].user.photo;
+					// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+					//var photo=lboard[u].user.photo;
+					var photo=lboard[u].user.photo.prefix+"32"+lboard[u].user.photo.suffix;
+					// horzel 2014.07.09 End, changes to url for picture, now build from two fields and size
 					var fname=lboard[u].user.firstName;
 					var lname=(lboard[u].user.lastName)? lboard[u].user.lastName: '';
 					var uname=fname + " "+ lname;
@@ -327,7 +330,10 @@ if(1==1){
 			}
 			var tipuserfn=tip.user.firstName;
 			var tipuserln=(tip.user.lastName!=undefined)? tip.user.lastName: "";
-			var tipuserpic=tip.user.photo;
+			// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+			//var tipuserpic=tip.user.photo;
+			var tipuserpic=tip.user.photo.prefix+"32"+tip.user.photo.suffix;
+			// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 			
 			/*this.controller.showAlertDialog({
 				onChoose: function(value) {},

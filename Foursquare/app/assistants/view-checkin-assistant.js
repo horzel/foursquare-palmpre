@@ -224,7 +224,10 @@ ViewCheckinAssistant.prototype.checkinSuccess = function(r) {
 	var checkin={};
 	checkin.firstname=j.checkin.user.firstName;
 	checkin.lastname=j.checkin.user.lastName;
-	checkin.photo=j.checkin.user.photo;
+	// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+	//checkin.photo=j.checkin.user.photo;
+	checkin.photo=j.checkin.user.photo.prefix+"32"+j.checkin.user.photo.suffix;
+	// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 	
 	switch(j.checkin.type){
 		case "checkin":
