@@ -160,7 +160,11 @@ logthis("centerIndex+1="+this.centerIndex+1);
 logthis("index="+this.params.index);
 logthis("arraylen="+this.params.array.length);
 for(var f=0;f<this.params.array.length;f++){
-	logthis("array["+f+"]="+this.params.array[f]);
+	// horzel 2014.07.10 Start, changed so as to be able to read something in the log
+	//logthis("array["+f+"]="+this.params.array[f]);
+	logthis("array["+f+"]="+Object.toJSON(this.params.array[f]));
+	// horzel 2014.07.10 End log changing
+	
 }
    switch(action) {
       
@@ -171,18 +175,28 @@ for(var f=0;f<this.params.array.length;f++){
             	this.viewer.mojo.leftUrlProvided();
             	logthis("no left");
             }else{
-            	this.viewer.mojo.leftUrlProvided(this.params.array[this.centerIndex-1].url);
-            }
-            this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].url);
-            this.showInfo(this.params.array[this.centerIndex]);
+            	// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+            	//this.viewer.mojo.leftUrlProvided(this.params.array[this.centerIndex-1].url);
+            	this.viewer.mojo.leftUrlProvided(this.params.array[this.centerIndex-1].prefix+"original"+this.params.array[this.centerIndex-1].suffix);
+            	// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+				}
+            // horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+            //this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].url);
+            this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].prefix+"original"+this.params.array[this.centerIndex].suffix);
+            // horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+			this.showInfo(this.params.array[this.centerIndex]);
             if(this.centerIndex==this.endindex){
             	this.viewer.mojo.rightUrlProvided();
             	logthis("no right");
             }else{
             	if(this.params.array[this.centerIndex+1]){
-	            	logthis("has right: "+this.params.array[this.centerIndex+1].url);
-		            this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].url);
-		        }
+            		// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+            		//logthis("has right: "+this.params.array[this.centerIndex+1].url);
+		            //this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].url);
+		            logthis("has right: "+Object.toJSON(this.params.array[this.centerIndex+1].prefix+"original"+this.params.array[this.centerIndex+1].suffix));
+		            this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].prefix+"original"+this.params.array[this.centerIndex+1].suffix);
+		            // horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+            	}
 	        }
       break;
       
@@ -191,12 +205,19 @@ for(var f=0;f<this.params.array.length;f++){
             // if the center image isn't the last one, increment the index and update images
             if (this.centerIndex != this.endIndex) {
                   this.centerIndex++;
-                  this.viewer.mojo.leftUrlProvided(this.params.array[this.centerIndex-1].url);
-                  this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].url);
-		          this.showInfo(this.params.array[this.centerIndex]);
+                  // horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+                  //this.viewer.mojo.leftUrlProvided(this.params.array[this.centerIndex-1].url);
+                  //this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].url);
+                  this.viewer.mojo.leftUrlProvided(this.params.array[this.centerIndex-1].prefix+"original"+this.params.array[this.centerIndex-1].suffix);
+                  this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].prefix+"original"+this.params.array[this.centerIndex].suffix);
+                  // horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+					this.showInfo(this.params.array[this.centerIndex]);
                   // if the center image is still not the last one, update the right image
                   if (this.centerIndex != this.endindex) {
-                     this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].url);
+                	  // horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+                	  //this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].url);
+                	  this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].prefix+"original"+this.params.array[this.centerIndex+1].suffix);
+                	  // horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
                   }
                   // otherwise, there is no right image
                   else {
@@ -214,16 +235,20 @@ for(var f=0;f<this.params.array.length;f++){
                   this.centerIndex--;
                   // if the center image still isn't the first one, update the left image
                   if (this.centerIndex != 0) {
-                     this.viewer.mojo.leftUrlProvided(this.params.array[this.centerIndex-1].url);
+                     this.viewer.mojo.leftUrlProvided(this.params.array[this.centerIndex-1].prefix+"original"+this.params.array[this.centerIndex-1].suffix);
                   }
                   // otherwise, there is no left image
                   else {
                      this.viewer.mojo.leftUrlProvided();
                   }
-                  this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].url);
+                  // horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+                  //this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].url);
+                  this.viewer.mojo.centerUrlProvided(this.params.array[this.centerIndex].prefix+"original"+this.params.array[this.centerIndex].suffix);
 		          this.showInfo(this.params.array[this.centerIndex]);
-                  this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].url);
-            
+		          //this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].url);
+		          this.viewer.mojo.rightUrlProvided(this.params.array[this.centerIndex+1].prefix+"original"+this.params.array[this.centerIndex+1].suffix);
+                  // horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+					
             }
             // otherwise, do nothing, for now
             else {}

@@ -2,6 +2,7 @@ function VenuePhotosAssistant(p) {
 	this.params=p;
 }
 
+
 VenuePhotosAssistant.prototype.setup = function() {
 	if(this.params.photos.count>0){
 		var photosText='';
@@ -25,7 +26,10 @@ VenuePhotosAssistant.prototype.setup = function() {
 					logthis("building thumbs");
 					var photo=photosstuff.groups[pg].items[p];
 					logthis(Object.toJSON(photo));
-					var purl=photo.sizes.items[photo.sizes.items.length-2].url; //sizes are largest to smallest in array, use medium image for thumb
+					// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+					//var purl=photo.sizes.items[photo.sizes.items.length-2].url; //sizes are largest to smallest in array, use medium image for thumb
+					var purl=photo.prefix+"80"+photo.suffix; //sizes are largest to smallest in array, use medium image for thumb
+					// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 					this.fullsizePhotos.push(photo);
 					var index=this.fullsizePhotos.length-1;
 					photosThumbs+='<img src="'+purl+'" width="80" height="80" class="friend-avatar" x-fsq-fullsize="'+photo.url+'" x-fsq-index="'+index+'"/>';
