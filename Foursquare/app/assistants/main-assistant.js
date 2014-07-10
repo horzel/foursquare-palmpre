@@ -252,7 +252,10 @@ MainAssistant.prototype.setup = function() {
 		 	endpoint: 'venues/categories',
 		 	requiresAuth: true,
 		 	ignoreErrors: true,
-		 	parameters: {},
+		 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		 	onSuccess: _globals.categorySuccess.bind(this),
 		 	onFailure: _globals.categoryFailed.bind(this)
 		 });
@@ -320,7 +323,9 @@ MainAssistant.prototype.login = function(uname, pass){
  	this.controller.get("loginSpinner").style.visibility='visible';
 	//this.controller.get("loginSpinner").mojo.start();
  
-	var url="https://api.foursquare.com/v2/multi?requests="+encodeURIComponent("/users/self,/settings/all,/users/requests")+"&oauth_token="+this.token;
+	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+	var url="https://api.foursquare.com/v2/multi?requests="+encodeURIComponent("/users/self,/settings/all,/users/requests")+"&oauth_token="+this.token+"&v="+_globals.v;
+	// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 	
 	//this.controller.get('signupbutton').hide();
 		

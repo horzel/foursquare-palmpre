@@ -105,7 +105,10 @@ NearbyTipsAssistant.prototype.getTips = function() {
 		 foursquareGet(this,{
 		 	endpoint: 'tips/search',
 		 	requiresAuth: true,
-		   parameters: {ll:_globals.lat+","+_globals.long, filter: 'nearby'},
+		   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+		   //parameters: {ll:_globals.lat+","+_globals.long, filter: 'nearby'},
+		   parameters: {ll:_globals.lat+","+_globals.long, filter: 'nearby', v:_globals.v},
+		   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		   onSuccess: this.getTipsSuccess.bind(this),
 		   onFailure: this.getTipsFailed.bind(this)		 	
 		 });
@@ -131,7 +134,10 @@ NearbyTipsAssistant.prototype.getFriendTips = function() {
 		 foursquareGet(this,{
 		 	endpoint: 'tips/search',
 		 	requiresAuth: true,
-		   parameters: {ll:_globals.lat+","+_globals.long, filter: 'friends'},
+		   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+		   //parameters: {ll:_globals.lat+","+_globals.long, filter: 'friends'},
+		   parameters: {ll:_globals.lat+","+_globals.long, filter: 'friends', v:_globals.v},
+		   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 		   onSuccess: this.getTipsSuccess.bind(this),
 		   onFailure: this.getTipsFailed.bind(this)		 	
 		 });
@@ -158,7 +164,10 @@ NearbyTipsAssistant.prototype.listDelete = function(event){
 	
 		foursquarePost(this,{
 			endpoint: 'tips/'+tip+'/unmark',
-			parameters: {},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: true,
 			onSuccess: this.unmarkTipSuccess.bind(this),
@@ -168,10 +177,17 @@ NearbyTipsAssistant.prototype.listDelete = function(event){
 }
 
 NearbyTipsAssistant.prototype.markTip = function(tip,how){
+		
 		var url = 'https://api.foursquare.com/v1/tip/mark'+how+'.json';
 		foursquarePost(this,{
 			endpoint: 'tip/mark'+how+'.json',
-			parameters: {tid: tip},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//parameters: {tid: tip},
+			parameters: {
+				tid: tip, 
+				v:_globals.v
+				},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 			requiresAuth: true,
 			debug: false,
 			onSuccess: this.markTipSuccess.bind(this),

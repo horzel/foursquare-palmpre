@@ -84,7 +84,10 @@ ViewTipAssistant.prototype.setup = function() {
 	 	endpoint: 'tips/'+this.todo.tip.id,
 	 	requiresAuth: true,
 	 	debug: true,
-	   parameters: {},
+	   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+	   //parameters: {},
+	   parameters: {v:_globals.v},
+	   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 	   onSuccess: this.tipSuccess.bind(this),
 	   onFailure: this.tipFailed.bind(this)		 	
 	 });
@@ -362,7 +365,10 @@ ViewTipAssistant.prototype.showUserInfo = function(event) {
 ViewTipAssistant.prototype.tipRemove = function(event){
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.todo.tip.id+'/unmark',
-			parameters: {},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -388,7 +394,10 @@ ViewTipAssistant.prototype.tipRemove = function(event){
 ViewTipAssistant.prototype.tipAdd = function(event){
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.todo.tip.id+'/marktodo',
-			parameters: {},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -414,7 +423,10 @@ ViewTipAssistant.prototype.tipAdd = function(event){
 ViewTipAssistant.prototype.tipDone = function(event){
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.todo.tip.id+'/markdone',
-			parameters: {},
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+			//parameters: {},
+			parameters: {v:_globals.v},
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -540,6 +552,10 @@ ViewTipAssistant.prototype.handleCommand = function(event){
 							
 							params.push({"key":"broadcast","data":"public","contentType":"text/plain"});
 							
+							// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+							params.push({"key":"v","data":_globals.v,"contentType":"text/plain"});
+							// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
+							
 						    var appController = Mojo.Controller.getAppController();
 							var cardStageController = appController.getStageController("mainStage");
 							var controller = cardStageController.activeScene();
@@ -569,7 +585,10 @@ ViewTipAssistant.prototype.handleCommand = function(event){
 											 	endpoint: 'checkins/'+this.params.checkin,
 											 	requiresAuth: true,
 											 	debug: true,
-											   parameters: {},
+											   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+											   //parameters: {},
+											   parameters: {v:_globals.v},
+											   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 											   onSuccess: this.checkinSuccess.bind(this),
 											   onFailure: this.checkinFailed.bind(this)		 	
 											});											

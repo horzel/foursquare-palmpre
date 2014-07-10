@@ -269,7 +269,9 @@ VenuedetailAssistant.prototype.setup = function() {
 	Mojo.Event.listen(this.controller.get('tips-list'),Mojo.Event.listTap, this.tipListTappedBound);
 	Mojo.Event.listen(this.controller.get("specialScroller"), Mojo.Event.propertyChange, this.specialScrollBound);
 
-	Mojo.Event.listen(this.controller.get("todohere"),Mojo.Event.tap,this.showTodoBound);
+//Herrie 10-Jul-2014 START Venue no longer has todos		
+//	Mojo.Event.listen(this.controller.get("todohere"),Mojo.Event.tap,this.showTodoBound);
+//Herrie 10-Jul-2014 END Venue no longer has todos	
 	Mojo.Event.listen(this.controller.stageController.document,Mojo.Event.activate, this.stageActivateBound);
 
 
@@ -645,16 +647,19 @@ VenuedetailAssistant.prototype.getVenueInfoSuccess = function(response) {
 	logthis("success");
 	var th=this;
 	var j=response.responseJSON.response.responses[0].response;
-
-	this.gotInfo=true;
 	
-	if((j.venue.todos.count>0)){
+	
+	this.gotInfo=true;
+
+//Herrie 10-Jul-2014 START Venue no longer has todos	
+/*	if((j.venue.todos.count>0)){
 		this.infoFired=true;
 		logthis("has todo");
 		this.todoArray=j.venue.todos.items; //todoArray;
 		this.controller.get("todohere").show();
 	}
-
+*/
+//Herrie 10-Jul-2014 END Venue no longer has todos
 logthis("passed todo");
 
 	//logthis("num specials="+response.responseJSON.venue.specials.length);
@@ -1347,7 +1352,10 @@ logthis("done mayor");
 						logthis("building thumbs");
 						var photo=photosstuff.groups[pg].items[p];
 						logthis(Object.toJSON(photo));
-						var purl=photo.sizes.items[photo.sizes.items.length-1].url; //sizes are largest to smallest in array, use smallest possible image for thumb
+						//Herrie 10-Jul-2014 START Fix the URL for the photo
+						var purl=photo.prefix+"32"+photo.suffix; //sizes are largest to smallest in array, use smallest possible image for thumb
+						//var purl=photo.sizes.items[photo.sizes.items.length-1].url; //sizes are largest to smallest in array, use smallest possible image for thumb
+						//Herrie 10-Jul-2014 END Fix the URL for the photo
 						photosThumbs+='<img src="'+purl+'" width="32" height="32" class="venue-photo-thumb"/>';
 						thumbCount++;
 						
@@ -1583,7 +1591,9 @@ logthis("done mayor");
 	//venue info stuff
 	var totalcheckins=j.venue.stats.checkinsCount;
 	var totalusers=j.venue.stats.usersCount;
-	var beenhere=j.venue.beenHere.count;
+	//Herrie 10-Jul-2014 START Been Here is not available anymore
+	//var beenhere=j.venue.beenHere.count;
+	//Herrie 10-Jul-2014 END Been Here is not available anymore
 	var twitter=(j.venue.contact.twitter)? j.venue.contact.twitter: undefined;
 	var phone=(j.venue.contact.phone)? j.venue.contact.phone: undefined;
 	var venueurl=(j.venue.url)? j.venue.url: undefined;
@@ -1605,12 +1615,13 @@ logthis("done mayor");
 
 logthis("6");
 
-
 	var vinfo='';
 	var s=(totalcheckins != 1)? "s" :"";
 	if (totalcheckins>0) {
 		vinfo='<span class="capitalize">'+j.venue.name+'</span> has been visited '+totalcheckins+' time'+s+' ';
-		vinfo+=(beenhere)? 'and you\'ve been here before': 'but you\'ve never been here';
+		//Herrie 10-Jul-2014 START Been Here is no longer available
+		//vinfo+=(beenhere)? 'and you\'ve been here before': 'but you\'ve never been here';
+		//Herrie 10-Jul-2014 END Been Here is no longer available
 		vinfo+='.<br/>';
 logthis("7");
 		
@@ -1626,7 +1637,10 @@ logthis("8");
 
 		var itm={};
 		itm.icon="images/beenhere_32.png";
-		itm.caption=(beenhere>0)? "You've been here":"You've never been here";
+		//Herrie 10-Jul-2014 START Been Here is no longer available
+		//itm.caption=(beenhere>0)? "You've been here":"You've never been here";
+		itm.caption="";
+		//Herrie 10-Jul-2014 END Been Here is no longer available
 		itm.action="";
 		itm.highlight="";
 		this.info.push(itm);
@@ -2314,8 +2328,9 @@ VenuedetailAssistant.prototype.cleanup = function(event) {
  	Mojo.Event.stopListening(this.controller.get("venueMap"),Mojo.Event.tap, this.showGoogleMapsBound);
 	Mojo.Event.stopListening(this.controller.get("overlay-closer"),Mojo.Event.tap, this.overlayCloserBound);
 	Mojo.Event.stopListening(this.controller.get('infoList'),Mojo.Event.listTap, this.infoTappedBound);
-	Mojo.Event.stopListening(this.controller.get("todohere"),Mojo.Event.tap,this.showTodoBound);
-
+//Herrie 10-Jul-2014 START Venue no longer has todos	
+//	Mojo.Event.stopListening(this.controller.get("todohere"),Mojo.Event.tap,this.showTodoBound);
+//Herrie 10-Jul-2014 END Venue no longer has todos	
 
 	Mojo.Event.stopListening(this.controller.get("mayor-row"),Mojo.Event.tap,this.flipMayorBound);
 	Mojo.Event.stopListening(this.controller.get("whoshere-row"),Mojo.Event.tap,this.flipPeopleBound);

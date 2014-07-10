@@ -4,7 +4,9 @@ window.maps = window.maps || {};
 fsq = {};
 logthis("globals started launch");
 fsq.Metrix = new Metrix();
-_globals.v="20110720";
+//Herrie START 03-Jul-2014 update the v to 20140701 in order for the app to keep working
+_globals.v="20140701";
+//Herrie END 03-Jul-2014 update the v to 20140701 in order for the app to keep working
 _globals.db = new Mojo.Depot({name:"feed"}, function(){logthis("depot OK");}, function(){logthis("depot FAIL");}); 
 _globals.rdb = new Mojo.Depot({name:"rec"}, function(){logthis("recdepot OK");}, function(){logthis("recdepot FAIL");}); 
 _globals.debugMode=false;
@@ -58,6 +60,10 @@ _globals.whatsnew={
 	"id":"whatsnew",
 	"icon":"",
 	"pages":[
+		"Here's what's new in foursquare webOS <b>v2.9.0</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/herrie1982\">@Herrie1982</a><ul><li>Fix check-in (venue/todo and venue/beenhere are no longer available so disabled</li></ul>",
+		"Here's what's new in foursquare webOS <b>v2.8.9</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/herrie1982\">@Herrie1982</a><ul><li>Updates to processing of image url's for user pictures thanks to @Horzel_webOS!</li></ul>",
+		"Here's what's new in foursquare webOS <b>v2.8.8</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/herrie1982\">@Herrie1982</a><ul><li>Fixed all the Foursquare requests to include a proper version so the app will work after 01-Jul-2014</li></ul>",
+		"Here's what's new in foursquare webOS <b>v2.8.7</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/zhephree\">@zhephree</a><ul><li>Fixed all the Foursquare requests to include Version which is required since 28-Jan-2014</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.5</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/zhephree\">@zhephree</a><ul><li>Added Project Macaw as a Twitter client option<li>Fixed sig resolving from 4sq.com links passed from other apps</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.4</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/zhephree\">@zhephree</a><ul><li>Sorry for the bugs lately. Something changed in foursquare's API that I didn't account for. I take the blame here. Enjoy this update. Hopefully the next update will be to bring NEW features and not fix existing ones<li>Fixed a bug preventing Venues with a special from loading</li><li>Fixed a bug that prevented list of Trending Places from displaying in Explore tab</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.3</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/zhephree\">@zhephree</a><ul><li>Fixed a bug preventing Venues from loading</li><li>Adapted to Pre 3 resolution</li></ul>",
@@ -539,9 +545,13 @@ function foursquareGetMulti(that,opts){
 		}else{
 			logthis("getting endpoint data");
 			var url = "https://api.foursquare.com/v2/multi?requests="+encodeURIComponent(opts.endpoints)+"&oauth_token="+_globals.token+"&v="+_globals.v;
-			var urlu = "https://api.foursquare.com/v2/multi?requests="+(opts.endpoints)+"&oauth_token="+_globals.token;
+			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+			//var urlu = "https://api.foursquare.com/v2/multi?requests="+(opts.endpoints)+"&oauth_token="+_globals.token;
+			var urlu = "https://api.foursquare.com/v2/multi?requests="+(opts.endpoints)+"&oauth_token="+_globals.token+"&v="+_globals.v;
+			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			logthis("urlu="+urlu);
 			logthis("url="+url);
+			logthis("Herrie _globals.token="+_globals.token);
 			var request = new Ajax.Request(url, {
 			   method: 'get',
 			   evalJSON: 'true',
@@ -843,6 +853,9 @@ _globals.userSuccess = function(response){
 	 var request = new Ajax.Request(url, {
 	   method: 'get',
 	   evalJSON: 'force',
+	   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
+	   parameters: {v:_globals.v},
+	   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 	   requestHeaders: {Authorization: _globals.auth},
 	   onSuccess: _globals.getFriendsSuccess.bind(this),
 	   onFailure: _globals.getFriendsFailed.bind(this)
@@ -886,7 +899,10 @@ _globals.userFailed = function(r){
 }
 
 _globals.relogin = function() {
-	var url="https://api.foursquare.com/v2/multi?requests="+encodeURIComponent("/users/self,/settings/all,/users/requests")+"&oauth_token="+this.token;
+	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
+	//var url="https://api.foursquare.com/v2/multi?requests="+encodeURIComponent("/users/self,/settings/all,/users/requests")+"&oauth_token="+this.token;
+	var url="https://api.foursquare.com/v2/multi?requests="+encodeURIComponent("/users/self,/settings/all,/users/requests")+"&oauth_token="+this.token+"&v="+_globals.v;
+	// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 	
 	//this.controller.get('signupbutton').hide();
 		

@@ -10,7 +10,10 @@ RecommendAssistant.prototype.setup = function() {
 		   method: 'get',
 		   evalJSON: 'force',
 		   requestHeaders: {Authorization: auth}, 
-		   parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, l:50},
+		   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning	
+		   //parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, l:50},
+		   parameters: {geolat:_globals.lat, geolong:_globals.long, geohacc:_globals.hacc,geovacc:_globals.vacc, geoalt:_globals.altitude, l:50, v:_globals.v},
+		   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning	
 		   onSuccess: this.venuesSuccess.bind(this),
 		   onFailure: this.venuesFailed.bind(this)
 		 });
@@ -211,7 +214,13 @@ RecommendAssistant.prototype.getVenue = function(r) {
 	   method: 'get',
 	   evalJSON: 'force',
 	   requestHeaders: {Authorization:auth},
-	   parameters: {vid:this.venueList[this.currentVenue].id},
+	   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning	
+	   //parameters: {vid:this.venueList[this.currentVenue].id},
+	   parameters: {
+		   vid:this.venueList[this.currentVenue].id,
+		   v=_globals.v
+		   },
+	   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning	
 	   onSuccess: this.getVenue.bind(this),
 	   onFailure: this.venuesFailed.bind(this)
 	 });
