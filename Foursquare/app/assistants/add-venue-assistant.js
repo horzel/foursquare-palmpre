@@ -32,21 +32,33 @@ function AddVenueAssistant(a,ed,v,vn) {
 	for(var i =0; i<_globals.categories.length; i++){
 		if(_globals.categories[i].id==this.venue.categories[0].id){
 			this.categoryName=_globals.categories[i].name;
-			this.categoryIcon=_globals.categories[i].icon;
+			// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+			//this.categoryIcon=_globals.categories[i].icon;
+			this.categoryIcon=_globals.categories[i].icon.prefix+"bg_32"+_globals.categories[i].icon.suffix;
+			// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 			break;
 		}
 		for(var s=0;s<_globals.categories[i].categories.length;s++){
 			if(_globals.categories[i].categories[s].id==this.venue.categories[0].id){
 				this.categoryName=_globals.categories[i].categories[s].name;
-				this.categoryIcon=_globals.categories[i].categories[s].icon;
+				// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+				//this.categoryIcon=_globals.categories[i].categories[s].icon;
+				this.categoryIcon=_globals.categories[i].categories[s].icon.prefix+"bg_32"+_globals.categories[i].categories[s].icon.suffix;
+				// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 				break;
 			}
 			
 			if(_globals.categories[i].categories[s].categories != undefined){
 				for(var t=0; t<_globals.categories[i].categories[s].categories.length; t++){
 					if(_globals.categories[i].categories[s].categories[t].id==this.venue.categories[0].id){
-						this.categoryName=_globals.categories[i].categories[t].name;
-						this.categoryIcon=_globals.categories[i].categories[t].icon;
+						// horzel 2014.07.10 Start, inserted middle level of three back in: .categories[s]
+						//this.categoryName=_globals.categories[i].categories[t].name;
+						this.categoryName=_globals.categories[i].categories[s].categories[t].name;
+						// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+						//this.categoryIcon=_globals.categories[i].categories[t].icon;
+						this.categoryIcon=_globals.categories[i].categories[s].categories[t].icon.prefix+"bg_32"+_globals.categories[i].categories[s].categories[t].icon.suffix;
+						// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+						// horzel 2014.07.10 End,   inserted middle level of three back in: .categories[s]
 						break;
 					}
 				}		

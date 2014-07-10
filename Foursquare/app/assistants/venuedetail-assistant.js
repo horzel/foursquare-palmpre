@@ -1606,7 +1606,10 @@ logthis("done mayor");
 	//venue category
 	if(j.venue.categories.length>0){
 		var itm={};
-		itm.icon=j.venue.categories[0].icon;
+		// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+		//itm.icon=j.venue.categories[0].icon;
+		itm.icon=j.venue.categories[0].icon.prefix+"bg_32"+j.venue.categories[0].icon.suffix;
+		// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 		itm.caption=j.venue.categories[0].name;
 		itm.action="";
 		itm.highlight="";

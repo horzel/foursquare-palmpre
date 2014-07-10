@@ -132,7 +132,10 @@ NearbyVenuesMapAssistant.prototype.setMarkers = function (map) {
 			this.venues[v].primarycategory.iconurl="images/no-cat.png";
 		}else{
 			this.venues[v].primarycategory=this.venues[v].categories[0];
-			this.venues[v].primarycategory.iconurl=this.venues[v].categories[0].icon;
+			// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+			//this.venues[v].primarycategory.iconurl=this.venues[v].categories[0].icon;
+			this.venues[v].primarycategory.iconurl=this.venues[v].categories[0].icon.prefix+"bg_32"+this.venues[v].categories[0].icon.suffix;
+			// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 		}
 		
 		//'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=+|56739e'

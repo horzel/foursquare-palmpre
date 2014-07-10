@@ -13,7 +13,10 @@ CategoriesAssistant.prototype.setup = function() {
 		var a={};
 		a.label=$L(_globals.categories[i].name);
 		a.id=(_globals.categories[i].id)? _globals.categories[i].id: '';
-		a.icon=_globals.categories[i].icon;
+		// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+		//a.icon=_globals.categories[i].icon;
+		a.icon=_globals.categories[i].icon.prefix+"bg_32"+_globals.categories[i].icon.suffix;
+		// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 		a.index=i;
 		a.level=0;
 		this.categoriesModel.items.push(a);
@@ -23,7 +26,10 @@ CategoriesAssistant.prototype.setup = function() {
 			var b={};
 			b.label=$L(_globals.categories[i].categories[s].name);
 			b.id=_globals.categories[i].categories[s].id;
-			b.icon=_globals.categories[i].categories[s].icon;
+			// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+			//b.icon=_globals.categories[i].categories[s].icon;
+			b.icon=_globals.categories[i].categories[s].icon.preficx+"bg_32"+_globals.categories[i].categories[s].icon.suffix
+			// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 			b.index=s;
 			b.level=1;
 			
@@ -34,7 +40,10 @@ CategoriesAssistant.prototype.setup = function() {
 					var c={};
 					c.label=$L(_globals.categories[i].categories[s].categories[t].name);
 					c.id=_globals.categories[i].categories[s].categories[t].id;
-					c.icon=_globals.categories[i].categories[s].categories[t].icon;
+					// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+					//c.icon=_globals.categories[i].categories[s].categories[t].icon;
+					c.icon=_globals.categories[i].categories[s].categories[t].icon.prefix+"bg_32"+_globals.categories[i].categories[s].categories[t].icon.suffix;
+					// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 					c.level=2;
 					c.index=t;
 					c.hasChildren=false;
