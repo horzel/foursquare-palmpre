@@ -9,7 +9,7 @@ _globals.v="20140701";
 //Herrie END 03-Jul-2014 update the v to 20140701 in order for the app to keep working
 _globals.db = new Mojo.Depot({name:"feed"}, function(){logthis("depot OK");}, function(){logthis("depot FAIL");}); 
 _globals.rdb = new Mojo.Depot({name:"rec"}, function(){logthis("recdepot OK");}, function(){logthis("recdepot FAIL");}); 
-_globals.debugMode=false;
+_globals.debugMode=true;
 _globals.hasWeb=false;
 _globals.interval="00:20:00";
 //_globals.interval="00:05:00";
@@ -60,6 +60,7 @@ _globals.whatsnew={
 	"id":"whatsnew",
 	"icon":"",
 	"pages":[
+		"Here's what's new in foursquare webOS <b>v2.9.0</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/herrie1982\">@Herrie1982</a><ul><li>Fix check-in (venue/todo and venue/beenhere are no longer available so disabled</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.9</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/herrie1982\">@Herrie1982</a><ul><li>Updates to processing of image url's for user pictures thanks to @Horzel_webOS!</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.8</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/herrie1982\">@Herrie1982</a><ul><li>Fixed all the Foursquare requests to include a proper version so the app will work after 01-Jul-2014</li></ul>",
 		"Here's what's new in foursquare webOS <b>v2.8.7</b>! Follow me on Twitter: <a href=\"http://mobile.twitter.com/zhephree\">@zhephree</a><ul><li>Fixed all the Foursquare requests to include Version which is required since 28-Jan-2014</li></ul>",
