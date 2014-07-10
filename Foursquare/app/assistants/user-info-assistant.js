@@ -1428,7 +1428,10 @@ UserInfoAssistant.prototype.getVenueHistorySuccess = function(response){
 				if(j.venues.items[v].venue.categories.length==0){
 					j.venues.items[v].primarycategory={icon:"images/no-cat.png"};
 				}else{
-					j.venues.items[v].primarycategory={icon:j.venues.items[v].venue.categories[0].icon};
+					// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+					//j.venues.items[v].primarycategory={icon:j.venues.items[v].venue.categories[0].icon};
+					j.venues.items[v].primarycategory={icon:j.venues.items[v].venue.categories[0].icon.prefix+"bg_32"+j.venues.items[v].venue.categories[0].icon.suffix};
+					// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 				}
 			}else{
 				j.venues.items[v].primarycategory={icon:"images/no-cat.png"};
