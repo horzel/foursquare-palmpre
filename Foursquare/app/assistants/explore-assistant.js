@@ -257,7 +257,10 @@ ExploreAssistant.prototype.trendingSuccess = function(r) {
 				tmp_venue.primarycategory={};
 				tmp_venue.primarycategory.icon="images/no-cat.png";
 			}else{
-				tmp_venue.primarycategory=tmp_venue.categories[0];	
+				tmp_venue.primarycategory=tmp_venue.categories[0];
+				// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+				tmp_venue.primarycategory.icon=tmp_venue.categories[0].icon.prefix+"bg_32"+tmp_venue.categories[0].icon.suffix
+				// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 			}
 			
 			logthis("4");
@@ -545,7 +548,11 @@ ExploreAssistant.prototype.exploreSuccess = function(r) {
 				tmp_item.venue.primarycategory={};
 				tmp_item.venue.primarycategory.icon="images/no-cat.png";
 			}else{
-				tmp_item.venue.primarycategory=tmp_item.venue.categories[0];	
+				tmp_item.venue.primarycategory=tmp_item.venue.categories[0];
+				// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+				tmp_item.venue.primarycategory.icon=tmp_item.venue.categories[0].icon.prefix+"bg_32"+tmp_item.venue.categories[0].icon.suffix
+				// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+			
 			}
 			
 			logthis("6");

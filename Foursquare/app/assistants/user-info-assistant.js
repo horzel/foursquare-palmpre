@@ -855,7 +855,10 @@ logthis("handled pings");
 					itm.primarycategory.icon="images/no-cat.png";
 				}else{
 					itm.primarycategory=itm.categories[0];
-					
+					// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+					itm.primarycategory.icon=itm.categories[0].icon.prefix+"bg_32"+itm.categories[0].icon.suffix
+					// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+				
 				}
 
 				

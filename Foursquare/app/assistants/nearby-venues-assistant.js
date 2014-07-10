@@ -391,6 +391,10 @@ NearbyVenuesAssistant.prototype.specialsSuccess = function(r){
 					venue.primarycategory.icon="images/no-cat.png";
 				}else{
 					venue.primarycategory=venue.categories[0];
+					// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+					venue.primarycategory.icon=venue.categories[0].icon.prefix+"bg_32"+venue.categories[0].icon.suffix
+					// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
+				
 				}
 				venue.specialimage='<img src="images/small-special.png" class="small-special">';
 
@@ -776,7 +780,9 @@ logthis("got venues");
 						tmp_venue.primarycategory.icon="images/no-cat.png";
 					}else{
 						tmp_venue.primarycategory=tmp_venue.categories[0];
-						
+						// horzel 2014.07.10 Start, changes to url for picture, now build from two fields and size
+						tmp_venue.primarycategory.icon=tmp_venue.categories[0].icon.prefix+"bg_32"+tmp_venue.categories[0].icon.suffix
+						// horzel 2014.07.10 End,   changes to url for picture, now build from two fields and size
 					}
 					logthis("5");
 					
