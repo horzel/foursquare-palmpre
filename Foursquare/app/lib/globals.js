@@ -9,7 +9,7 @@ _globals.v="20140701";
 //Herrie END 03-Jul-2014 update the v to 20140701 in order for the app to keep working
 _globals.db = new Mojo.Depot({name:"feed"}, function(){logthis("depot OK");}, function(){logthis("depot FAIL");}); 
 _globals.rdb = new Mojo.Depot({name:"rec"}, function(){logthis("recdepot OK");}, function(){logthis("recdepot FAIL");}); 
-_globals.debugMode=true;
+_globals.debugMode=false;
 _globals.hasWeb=false;
 _globals.interval="00:20:00";
 //_globals.interval="00:05:00";

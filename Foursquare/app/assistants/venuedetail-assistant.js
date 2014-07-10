@@ -1352,7 +1352,6 @@ logthis("done mayor");
 						logthis("building thumbs");
 						var photo=photosstuff.groups[pg].items[p];
 						logthis(Object.toJSON(photo));
-						logthis("Herrie 2: "+Object.toJSON(photo.source));
 						//Herrie 10-Jul-2014 START Fix the URL for the photo
 						var purl=photo.prefix+"32"+photo.suffix; //sizes are largest to smallest in array, use smallest possible image for thumb
 						//var purl=photo.sizes.items[photo.sizes.items.length-1].url; //sizes are largest to smallest in array, use smallest possible image for thumb
