@@ -252,11 +252,8 @@ MainAssistant.prototype.setup = function() {
 		 	endpoint: 'venues/categories',
 		 	requiresAuth: true,
 		 	ignoreErrors: true,
-		 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-			//parameters: {},
-			parameters: {v:_globals.v},
-			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
-		 	onSuccess: _globals.categorySuccess.bind(this),
+		 	parameters: {},
+			onSuccess: _globals.categorySuccess.bind(this),
 		 	onFailure: _globals.categoryFailed.bind(this)
 		 });
 		this.login();

@@ -293,9 +293,6 @@ ShoutAssistant.prototype.doShout = function(extra) {
 				llAcc: _globals.hacc,
 				alt: _globals.altitude,
 				altAcc: _globals.vacc,
-				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-				v:_globals.v,
-				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 				broadcast: broadcast
 			},
 		requiresAuth: true,

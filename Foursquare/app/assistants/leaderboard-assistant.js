@@ -45,11 +45,8 @@ LeaderboardAssistant.prototype.setup = function() {
 	 	foursquareGet(this,{
 	 		endpoint: 'users/leaderboard',
 	 		requiresAuth: true,
-	 		// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-			//parameters: {},
-			parameters: {v:_globals.v},
-			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
-	   		onSuccess: this.getLeaderboardSuccess.bind(this),
+	 		parameters: {},
+			onSuccess: this.getLeaderboardSuccess.bind(this),
 	   		onFailure: this.getLeaderboardFailed.bind(this)
 	 	});
 
@@ -71,6 +68,10 @@ LeaderboardAssistant.prototype.getLeaderboardSuccess = function(r) {
 		var uname=lboard[i].user.firstName+' '+lname;
 		var rankClass=(lboard[i].user.relationship=="self")? "bright": "dim";
 		var id=(lboard[i].user.relationship=="self")? "self-listing": "";
+		// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+		// since in the html scene the data is used directly, I decided to recreate the data
+		var photo=lboard[i].user.photo.prefix+"32"+lboard[i].user.photo.suffix;
+		// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
 		if(lboard[i].user.relationship=="self"){
 			selfIndex=i;
 		}
@@ -78,6 +79,11 @@ LeaderboardAssistant.prototype.getLeaderboardSuccess = function(r) {
 		lboard[i].uname=uname;
 		lboard[i].rankClass=rankClass;
 		lboard[i].id=id;
+		// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
+		// since in the html scene the data is used directly, I decided to recreate the data
+		lboard[i].user.photo=photo;
+		// horzel 2014.07.09 End,   changes to url for picture, now build from two fields and size
+		
 	}
 	
 	this.leaderboardModel.items=lboard;

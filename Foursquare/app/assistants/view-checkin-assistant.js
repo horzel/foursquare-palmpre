@@ -38,11 +38,7 @@ ViewCheckinAssistant.prototype.setup = function() {
 	if(this.params.signature){
 		p.signature=this.params.signature;
 	}
- 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-	p.v=_globals.v;
-	// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
-
-	
+ 		
 	foursquareGet(this,{
 	 	endpoint: 'checkins/'+this.params.checkin,
 	 	requiresAuth: true,
@@ -79,10 +75,7 @@ ViewCheckinAssistant.prototype.onKeyPressHandler = function(event) {
 			this.controller.get("overlaySpinner").show();
 			foursquarePost(this,{
 				endpoint: 'checkins/'+this.params.checkin+'/addcomment',
-				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-				//parameters: {text:this.controller.get("txtComment").mojo.getValue()},
-				parameters: {text:this.controller.get("txtComment").mojo.getValue(), v:_globals.v},
-				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
+				parameters: {text:this.controller.get("txtComment").mojo.getValue()},
 				requiresAuth: true,
 				debug: true,
 				onSuccess: this.commentSuccess.bind(this),
@@ -122,10 +115,7 @@ ViewCheckinAssistant.prototype.deleteComment = function(event){
 				this.controller.get("overlaySpinner").show();
 				foursquarePost(this,{
 					endpoint: 'checkins/'+this.params.checkin+'/deletecomment',
-					// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-					//parameters: {commentId:cid},
-					parameters: {commentId:cid, v:_globals.v},
-					// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
+					parameters: {commentId:cid},
 					requiresAuth: true,
 					debug: true,
 					onSuccess: this.checkinSuccess.bind(this),
@@ -171,10 +161,7 @@ ViewCheckinAssistant.prototype.flagPhoto = function(event){
 			if(arg!==undefined){
 				foursquarePost(this,{
 					endpoint: 'photos/'+pid+'/flag',
-					// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-					//parameters: {problem:arg},
-					parameters: {problem:arg, v:_globals.v},
-					// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
+					parameters: {problem:arg},
 					requiresAuth: true,
 					debug: true,
 					onSuccess: function(r){
@@ -501,10 +488,7 @@ ViewCheckinAssistant.prototype.handleCommand = function(event){
 											 	endpoint: 'checkins/'+this.params.checkin,
 											 	requiresAuth: true,
 											 	debug: true,
-											   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-											   //parameters: {},
-											   parameters: {v:_globals.v},
-											   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
+											   parameters: {},
 											   onSuccess: this.checkinSuccess.bind(this),
 											   onFailure: this.checkinFailed.bind(this)		 	
 											});											

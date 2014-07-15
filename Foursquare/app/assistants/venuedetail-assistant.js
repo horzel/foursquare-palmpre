@@ -219,10 +219,7 @@ VenuedetailAssistant.prototype.setup = function() {
 		logthis("at "+this.venue.location.lat+", "+this.venue.location.lng);
 		this.controller.serviceRequest('palm://com.palm.location', {
 				method: "getReverseLocation",
-				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-				//parameters: {latitude: this.venue.location.lat, longitude:this.venue.location.lng},
-				parameters: {latitude: this.venue.location.lat, longitude:this.venue.location.lng, v:_globals.v},
-				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
+				parameters: {latitude: this.venue.location.lat, longitude:this.venue.location.lng},
 				onSuccess: function(address){
 					logthis("got approx addy");
 					//logthis("addy="+Object.toJSON(address));
@@ -465,10 +462,7 @@ VenuedetailAssistant.prototype.getVenueInfo = function() {
 //	 Mojo.Log.error('/venues/'+this.venue.id+',/venues/'+this.venue.id+'/tips,/venues/'+this.venue.id+'/photos?group=venue,/venues/'+this.venue.id+'/photos?group=checkin,/venues/'+this.venue.id+'/herenow?limit=250');
 	 foursquareGetMulti(this, {
 	 	endpoints: '/venues/'+this.venue.id+',/venues/'+this.venue.id+'/tips,/venues/'+this.venue.id+'/photos?group=venue,/venues/'+this.venue.id+'/photos?group=checkin,/venues/'+this.venue.id+'/herenow?limit=250',
-	 	// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-		parameters: {v:_globals.v},
-		// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
-		requiresAuth: true,
+	 	requiresAuth: true,
 	 	debug: true,
 	 	ignoreErrors: false,
 	    onSuccess: this.getVenueInfoSuccess.bind(this),
@@ -1817,9 +1811,6 @@ VenuedetailAssistant.prototype.checkIn = function(id, n, s, sf, t, fb) {
 				shout: s,
 				private: sf,
 				twitter: t,
-				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-				v:_globals.v,
-				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 				facebook: fb
 			},
 			onSuccess: this.checkInSuccess.bind(this),
@@ -1848,10 +1839,7 @@ VenuedetailAssistant.prototype.markClosed = function() {
 		foursquarePost(this, {
 			endpoint: 'venues/'+this.venue.id+'/flag',
 			requiresAuth: true,
-			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-			//parameters: {problem:'closed'},
-			parameters: {problem:'closed', v:_globals.v},
-			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
+			parameters: {problem:'closed'},
 			debug:true,
 			onSuccess: this.markClosedSuccess.bind(this),
 			onFailure: this.markClosedFailed.bind(this)
@@ -1881,10 +1869,7 @@ VenuedetailAssistant.prototype.markMislocated = function() {
 			endpoint: 'venues/'+this.venue.id+'/flag',
 			requiresAuth: true,
 			debug:true,
-			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-			//parameters: {problem:'mislocated'},
-			parameters: {problem:'mislocated', v:_globals.v},
-			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
+			parameters: {problem:'mislocated'},
 			onSuccess: this.markMislocatedSuccess.bind(this),
 			onFailure: this.markMislocatedFailed.bind(this)
 			
@@ -1912,10 +1897,7 @@ VenuedetailAssistant.prototype.markDuplicate = function() {
 			endpoint: 'venues/'+this.venue.id+'/flag',
 			requiresAuth: true,
 			debug:true,
-			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-			//parameters: {problem:'duplicate'},
-			parameters: {problem:'duplicate', v:_globals.v},
-			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
+			parameters: {problem:'duplicate'},
 			onSuccess: this.markDuplicateSuccess.bind(this),
 			onFailure: this.markDuplicateFailed.bind(this)
 			

@@ -118,9 +118,6 @@ logthis("oktapped");
 		var params={
 				venueId: this.vid,
 				text: this.tipModel.value,
-				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-				v:_globals.v,
-				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 				url: this.tipURLModel.value
 			};
 		foursquarePost(this.sceneAssistant,{
@@ -135,9 +132,6 @@ logthis("oktapped");
 	}else{
 		var params={
 				venueId: this.vid,
-				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-				v:_globals.v,
-				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 				text: this.tipModel.value
 			};
 		foursquarePost(this.sceneAssistant,{

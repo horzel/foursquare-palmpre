@@ -127,6 +127,7 @@ CheckinResultAssistant.prototype.initData = function(checkinJSON) {
 					// horzel 2014.07.09 Start, changes to url for picture, now build from two fields and size
 					//var photo=lboard[u].user.photo;
 					var photo=lboard[u].user.photo.prefix+"32"+lboard[u].user.photo.suffix;
+					logthis("Leaderbord photo? : "+ photo)
 					// horzel 2014.07.09 End, changes to url for picture, now build from two fields and size
 					var fname=lboard[u].user.firstName;
 					var lname=(lboard[u].user.lastName)? lboard[u].user.lastName: '';
@@ -391,10 +392,7 @@ CheckinResultAssistant.prototype.okTappedCheckin = function() {
 CheckinResultAssistant.prototype.tipDone = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/markdone',
-			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-			//parameters: {},
-			parameters: {v:_globals.v},
-			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
+			parameters: {},
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -419,10 +417,7 @@ CheckinResultAssistant.prototype.tipDone = function() {
 CheckinResultAssistant.prototype.tipRemove = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/unmark',
-			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-			//parameters: {},
-			parameters: {v:_globals.v},
-			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
+			parameters: {},
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){
@@ -448,10 +443,7 @@ CheckinResultAssistant.prototype.tipRemove = function() {
 CheckinResultAssistant.prototype.tipAdd = function() {
 		foursquarePost(this,{
 			endpoint: 'tips/'+this.tip.id+'/marktodo',
-			// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
-			//parameters: {},
-			parameters: {v:_globals.v},
-			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
+			parameters: {},
 			requiresAuth: true,
 			debug: true,
 			onSuccess: function(r){

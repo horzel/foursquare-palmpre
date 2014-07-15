@@ -305,9 +305,7 @@ CheckinAssistant.prototype.checkIn = function(id, n, s, sf, t, fb,hasphoto) {
 				ll: _globals.lat+","+_globals.long,
 				llAcc: _globals.hacc,
 				alt: _globals.altitude,
-				// Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning
 				v:_globals.v,
-				// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 				altAcc: _globals.vacc
 			};
 			

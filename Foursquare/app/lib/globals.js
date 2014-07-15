@@ -9,7 +9,7 @@ _globals.v="20140701";
 //Herrie END 03-Jul-2014 update the v to 20140701 in order for the app to keep working
 _globals.db = new Mojo.Depot({name:"feed"}, function(){logthis("depot OK");}, function(){logthis("depot FAIL");}); 
 _globals.rdb = new Mojo.Depot({name:"rec"}, function(){logthis("recdepot OK");}, function(){logthis("recdepot FAIL");}); 
-_globals.debugMode=false;
+_globals.debugMode=true;
 _globals.hasWeb=false;
 _globals.interval="00:20:00";
 //_globals.interval="00:05:00";
@@ -551,7 +551,6 @@ function foursquareGetMulti(that,opts){
 			// Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning
 			logthis("urlu="+urlu);
 			logthis("url="+url);
-			logthis("Herrie _globals.token="+_globals.token);
 			var request = new Ajax.Request(url, {
 			   method: 'get',
 			   evalJSON: 'true',
@@ -853,9 +852,6 @@ _globals.userSuccess = function(response){
 	 var request = new Ajax.Request(url, {
 	   method: 'get',
 	   evalJSON: 'force',
-	   // Herrie 03-Jul-2014 START use _globals.v for https://developer.foursquare.com/overview/versioning				
-	   parameters: {v:_globals.v},
-	   // Herrie 03-Jul-2014 END use _globals.v for https://developer.foursquare.com/overview/versioning				
 	   requestHeaders: {Authorization: _globals.auth},
 	   onSuccess: _globals.getFriendsSuccess.bind(this),
 	   onFailure: _globals.getFriendsFailed.bind(this)
